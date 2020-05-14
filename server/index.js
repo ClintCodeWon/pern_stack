@@ -14,6 +14,7 @@ app.use(express.json()); //req.body
 //create a todo
 
 app.post("/todos", async (req, res) => {
+  console.log("posting to DB");
   try {
     const { description } = req.body;
     const newTodo = await pool.query(
@@ -79,6 +80,7 @@ app.delete("/todos/:id", async (req, res) => {
       id
     ]);
     res.json("Todo was deleted!");
+    console.log("delete entry")
   } catch (err) {
     console.log(err.message);
   }
